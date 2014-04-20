@@ -262,6 +262,182 @@ char *Calendar::toString(char *buffer) const {
 
 
 
+/**
+ * to get seconds.
+ * @return
+ *   second : number of second in the object.
+ */
+byte Calendar::getSecond() const {
+	byte second, hour, minute, weekDay, day, month, year;
+
+	this->get(&second, &hour, &minute, &weekDay, &day, &month, &year);
+	return second;
+}
+
+
+
+/**
+ * to get minutes.
+ * @return
+ *   minute : number of second in the object.
+ */
+byte Calendar::getMinute() const {
+	byte second, hour, minute, weekDay, day, month, year;
+
+	this->get(&second, &hour, &minute, &weekDay, &day, &month, &year);
+	return minute;
+}
+
+
+/**
+ * to get hour.
+ * @return
+ *   hour : number of second in the object.
+ */
+byte Calendar::getHour() const {
+	byte second, hour, minute, weekDay, day, month, year;
+
+	this->get(&second, &hour, &minute, &weekDay, &day, &month, &year);
+	return hour;
+}
+
+
+
+/**
+ * to get weekDay.
+ * @return
+ *   weekDay : number of second in the object.
+ */
+byte Calendar::getWeekDay() const {
+	byte second, hour, minute, weekDay, day, month, year;
+
+	this->get(&second, &hour, &minute, &weekDay, &day, &month, &year);
+	return weekDay;
+}
+
+
+/**
+ * to get Day.
+ * @return
+ *   Day : number of second in the object.
+ */
+byte Calendar::getDay() const {
+	byte second, hour, minute, weekDay, day, month, year;
+
+	this->get(&second, &hour, &minute, &weekDay, &day, &month, &year);
+	return day;
+}
+
+
+/**
+ * to get month.
+ * @return
+ *   month : number of second in the object.
+ */
+byte Calendar::getMonth() const {
+	byte second, hour, minute, weekDay, day, month, year;
+
+	this->get(&second, &hour, &minute, &weekDay, &day, &month, &year);
+	return month;
+}
+
+
+/**
+ * to get Year.
+ * @return
+ *   year : number of second in the object.
+ */
+byte Calendar::getYear() const {
+	byte second, hour, minute, weekDay, day, month, year;
+
+	this->get(&second, &hour, &minute, &weekDay, &day, &month, &year);
+	return year;
+}
+
+
+/**
+ * to set seconds.
+ * @param
+ *   second to set.
+ */
+void Calendar::setSecond(byte second) {
+	byte mySecond, myHour, myMinute, myWeekDay, myDay, myMonth, myYear;
+
+	this->get(&mySecond, &myMinute, &myHour, &myWeekDay, &myDay, &myMonth, &myYear);
+	this->set(second, myMinute, myHour, myDay, myMonth, myYear);
+}
+
+
+
+/**
+ * to set minutes.
+ * @param
+ *   minutes to set.
+ */
+void Calendar::setMinute(byte minute) {
+	byte mySecond, myHour, myMinute, myWeekDay, myDay, myMonth, myYear;
+
+	this->get(&mySecond, &myMinute, &myHour, &myWeekDay, &myDay, &myMonth, &myYear);
+	this->set(mySecond, minute, myHour, myDay, myMonth, myYear);
+}
+
+
+
+/**
+ * to set hour.
+ * @param
+ *   hour to set.
+ */
+void Calendar::setHour(byte hour) {
+	byte mySecond, myHour, myMinute, myWeekDay, myDay, myMonth, myYear;
+
+	this->get(&mySecond, &myMinute, &myHour, &myWeekDay, &myDay, &myMonth, &myYear);
+	this->set(mySecond, myMinute, hour, myDay, myMonth, myYear);
+}
+
+
+
+/**
+ * to set days.
+ * @param
+ *   days to set.
+ */
+void Calendar::setDay(byte day) {
+	byte mySecond, myHour, myMinute, myWeekDay, myDay, myMonth, myYear;
+
+	this->get(&mySecond, &myMinute, &myHour, &myWeekDay, &myDay, &myMonth, &myYear);
+	this->set(mySecond, myMinute, myHour, day, myMonth, myYear);
+}
+
+
+
+/**
+ * to set monthes.
+ * @param
+ *   monthes to set.
+ */
+void Calendar::setMonth(byte month) {
+	byte mySecond, myHour, myMinute, myWeekDay, myDay, myMonth, myYear;
+
+	this->get(&mySecond, &myMinute, &myHour, &myWeekDay, &myDay, &myMonth, &myYear);
+	this->set(mySecond, myMinute, myHour, myDay, month, myYear);
+}
+
+
+
+/**
+ * to set year.
+ * @param
+ *   second to year.
+ */
+void Calendar::setYear(byte year) {
+	byte mySecond, myHour, myMinute, myWeekDay, myDay, myMonth, myYear;
+
+	this->get(&mySecond, &myMinute, &myHour, &myWeekDay, &myDay, &myMonth, &myYear);
+	this->set(mySecond, myMinute, myHour, myDay, myMonth, year);
+}
+
+
 
 /**
  * to add seconds. Can be negative. If resulting timestamp <0, set to 0
@@ -370,6 +546,34 @@ void unitaryTestCalendar() {
 
 	myCalendar.set(0,0,0,5,4,14);
 	CUnit("UT33 (+31 days)", (strcmp(myCalendar.toString(buffer), "5/4/14 (7) 0:0:0") == 0), &total, &KO);
+
+	myCalendar.set(0,0,0,5,4,14);
+	CUnit("UT40 (getSecond)", (myCalendar.getSecond() == 0), &total, &KO);
+	CUnit("UT41 (getMinute)", (myCalendar.getMinute() == 0), &total, &KO);
+	CUnit("UT42 (getHour)", (myCalendar.getHour() == 0), &total, &KO);
+	CUnit("UT43 (getWeekDay)", (myCalendar.getWeekDay() == 7), &total, &KO);
+	CUnit("UT44 (getDay)", (myCalendar.getDay() == 5), &total, &KO);
+	CUnit("UT45 (getMonth)", (myCalendar.getMonth() == 4), &total, &KO);
+	CUnit("UT46 (getYear)", (myCalendar.getYear() == 14), &total, &KO);
+
+	myCalendar.set(0,0,0,5,4,14);
+	myCalendar.setSecond(1);
+	CUnit("UT50 (setSecond)", (strcmp(myCalendar.toString(buffer), "5/4/14 (7) 0:0:1") == 0), &total, &KO);
+
+	myCalendar.setMinute(1);
+	CUnit("UT51 (setMinute)", (strcmp(myCalendar.toString(buffer), "5/4/14 (7) 0:1:1") == 0), &total, &KO);
+
+	myCalendar.setHour(1);
+	CUnit("UT52 (setHour)", (strcmp(myCalendar.toString(buffer), "5/4/14 (7) 1:1:1") == 0), &total, &KO);
+
+	myCalendar.setDay(6);
+	CUnit("UT53 (setDay)", (strcmp(myCalendar.toString(buffer), "6/4/14 (1) 1:1:1") == 0), &total, &KO);
+
+	myCalendar.setMonth(6);
+	CUnit("UT54 (setMonth)", (strcmp(myCalendar.toString(buffer), "6/6/14 (6) 1:1:1") == 0), &total, &KO);
+
+	myCalendar.setYear(15);
+	CUnit("UT55 (setYear)", (strcmp(myCalendar.toString(buffer), "6/6/15 (7) 1:1:1") == 0), &total, &KO);
 
 	CUnitFinal(total, KO);
 }

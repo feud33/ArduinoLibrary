@@ -114,10 +114,14 @@ bool DeviceClock::isOK () const {
  * @return bool (true : OK)
  */
 bool DeviceClock::isBatteryOK () const {
+	bool isOK=true;
 	Calendar myTime=Calendar();
 
-	this->get(this->ctrlStackId, &myTime);
-	return ( myTime.getTimestamp() == this->refTime);
+	isOK=ProtocolI2C::Check(this->id);
+	if( isOK ) {
+		this->get(this->ctrlStackId, &myTime);
+	}
+	return ( isOK && myTime.getTimestamp() == this->refTime);
 }
 
 
